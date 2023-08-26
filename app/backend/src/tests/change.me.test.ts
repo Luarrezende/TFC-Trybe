@@ -1,45 +1,45 @@
-import * as sinon from 'sinon';
-import * as chai from 'chai';
-// @ts-ignore
-import chaiHttp = require('chai-http');
+// import * as sinon from 'sinon';
+// import * as chai from 'chai';
+// // @ts-ignore
+// import chaiHttp = require('chai-http');
 
-import { app } from '../app';
-import Example from '../database/models/ExampleModel';
+// import { app } from '../app';
+// // import Example from '../database/models/ExampleModel';
+// import SequelizeTeam from '../database/models/teams';
+// import { team, teams } from './mocks/Team'
 
-import { Response } from 'superagent';
+// import { Response } from 'superagent';
 
-chai.use(chaiHttp);
+// chai.use(chaiHttp);
 
-const { expect } = chai;
+// const { expect } = chai;
 
-describe('Seu teste', () => {
-  /**
-   * Exemplo do uso de stubs com tipos
-   */
+// describe('Teams Test', function() {
+//   it('should return all Teams', async function() {
+//     sinon.stub(SequelizeTeam, 'findAll').resolves(teams as any);
 
-  // let chaiHttpResponse: Response;
+//     const { status, body } = await chai.request(app).get('/teams');
 
-  // before(async () => {
-  //   sinon
-  //     .stub(Example, "findOne")
-  //     .resolves({
-  //       ...<Seu mock>
-  //     } as Example);
-  // });
+//     expect(status).to.equal(200);
+//     expect(body).to.deep.equal(teams);
+//   });
 
-  // after(()=>{
-  //   (Example.findOne as sinon.SinonStub).restore();
-  // })
+//   it('should return a team by id', async function() {
+//     sinon.stub(SequelizeTeam, 'findOne').resolves(team as any);
 
-  // it('...', async () => {
-  //   chaiHttpResponse = await chai
-  //      .request(app)
-  //      ...
+//     const { status } = await chai.request(app).get('/teams/1');
 
-  //   expect(...)
-  // });
+//     expect(status).to.equal(200);
+//   });
 
-  it('Seu sub-teste', () => {
-    expect(false).to.be.eq(true);
-  });
-});
+//   // it('should return not found if the team doesn\'t exists', async function() {
+//   //   sinon.stub(SequelizeTeam, 'findOne').resolves(null);
+
+//   //   const { status, body } = await chai.request(app).get('/teams/1');
+
+//   //   expect(status).to.equal(404);
+//   //   expect(body.message).to.equal('Team 1 not found');
+//   // });
+
+//   afterEach(sinon.restore);
+// });
