@@ -3,7 +3,7 @@ import { QueryInterface, INTEGER, STRING } from 'sequelize';
 export default {
   up: async (queryInterface: QueryInterface) => {
     await queryInterface.createTable(
-      'teams',
+      'users',
       {
         id: {
           allowNull: false,
@@ -11,7 +11,19 @@ export default {
           primaryKey: true,
           type: INTEGER,
         },
-        team_name: {
+        username: {
+          allowNull: false,
+          type: STRING,
+        },
+        email: {
+          allowNull: false,
+          type: STRING,
+        },
+        role: {
+          allowNull: false,
+          type: STRING,
+        },
+        password: {
           allowNull: false,
           type: STRING,
         },
@@ -20,6 +32,6 @@ export default {
   },
 
   down: async (queryInterface: QueryInterface) => {
-    await queryInterface.dropTable('teams');
+    await queryInterface.dropTable('users');
   }
 }
