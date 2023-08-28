@@ -20,4 +20,10 @@ export default class TeamsService {
 
     return { status: 'SUCCESSFUL', data: { token: userToken } };
   }
+
+  public async getRole(email: string): Promise<ServiceResponse<string | object>> {
+    const userRole = await this.modelUser.getRole(email);
+
+    return { status: 'SUCCESSFUL', data: { role: userRole } };
+  }
 }

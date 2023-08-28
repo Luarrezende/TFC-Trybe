@@ -9,4 +9,14 @@ export default class ModelUser implements ILoginModel {
     const user = await this.model.findOne({ where: { email } });
     return user;
   }
+
+  async getRole(email: string): Promise<string | null> {
+    const user = await this.model.findOne({ where: { email } });
+
+    if (user === null) {
+      return 'errou';
+    }
+
+    return user.role;
+  }
 }

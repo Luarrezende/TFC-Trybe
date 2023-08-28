@@ -13,4 +13,12 @@ export default class TeamsController {
     const serviceResponse = await this.loginService.login(email, password);
     res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
   }
+
+  public async getRole(req: Request, res: Response) {
+    const { email } = req.body.user;
+
+    const serviceResponse = await this.loginService.getRole(email);
+
+    return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
+  }
 }
