@@ -16,4 +16,10 @@ export default class TeamsController {
     const serviceResponse = await this.matchService.findAll();
     res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
   }
+
+  public async finish(req: Request, res: Response) {
+    const { id } = req.params;
+    const serviceResponse = await this.matchService.finish(Number(id));
+    res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
+  }
 }

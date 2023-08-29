@@ -27,4 +27,16 @@ export default class ModelMatch implements IMatchModel {
     });
     return dbData;
   }
+
+  async finish(id: number): Promise<number | null> {
+    const [affectedRows] = await this.model.update({
+      inProgress: false,
+    }, {
+      where: { id },
+    });
+
+    if (affectedRows === 0) return null;
+
+    return affectedRows;
+  }
 }

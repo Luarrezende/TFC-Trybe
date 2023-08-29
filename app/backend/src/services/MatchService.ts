@@ -17,4 +17,9 @@ export default class TeamsService {
     const allMatchesInProgress = await this.modelMatch.getInProgress(inProgress);
     return { status: 'SUCCESSFUL', data: allMatchesInProgress };
   }
+
+  public async finish(id: number): Promise<ServiceResponse<object>> {
+    await this.modelMatch.finish(id);
+    return { status: 'SUCCESSFUL', data: { message: 'Finished' } };
+  }
 }
