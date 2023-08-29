@@ -14,7 +14,17 @@ export default class ModelMatch implements IMatchModel {
         { model: this.model2, as: 'awayTeam', attributes: { exclude: ['id'] } },
       ],
     });
-    console.log(dbData);
+    return dbData;
+  }
+
+  async getInProgress(inProgress: string): Promise<IMatch[]> {
+    const dbData = await this.model.findAll({
+      where: { inProgress: inProgress === 'true' },
+      include: [
+        { model: this.model2, as: 'homeTeam', attributes: { exclude: ['id'] } },
+        { model: this.model2, as: 'awayTeam', attributes: { exclude: ['id'] } },
+      ],
+    });
     return dbData;
   }
 }

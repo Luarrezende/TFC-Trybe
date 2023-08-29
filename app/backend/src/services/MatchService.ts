@@ -12,4 +12,9 @@ export default class TeamsService {
     const allMatches = await this.modelMatch.findAll();
     return { status: 'SUCCESSFUL', data: allMatches };
   }
+
+  public async getInProgress(inProgress: string): Promise<ServiceResponse<IMatch[]>> {
+    const allMatchesInProgress = await this.modelMatch.getInProgress(inProgress);
+    return { status: 'SUCCESSFUL', data: allMatchesInProgress };
+  }
 }
