@@ -2,6 +2,7 @@ import ModelMatch from '../models/MatchModel';
 import { IMatch } from '../Interfaces/matches/IMatch';
 import { IMatchModel } from '../Interfaces/matches/IMatchModel';
 import { ServiceResponse } from '../Interfaces/ServiceResponse';
+import { IBody } from '../Interfaces/matches/IBody';
 
 export default class TeamsService {
   constructor(
@@ -21,5 +22,10 @@ export default class TeamsService {
   public async finish(id: number): Promise<ServiceResponse<object>> {
     await this.modelMatch.finish(id);
     return { status: 'SUCCESSFUL', data: { message: 'Finished' } };
+  }
+
+  public async updateResult(id: number, body: IBody): Promise<object> {
+    await this.modelMatch.updateResult(id, body);
+    return { status: 'SUCCESSFUL', data: { message: 'Updated' } };
   }
 }

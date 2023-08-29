@@ -2,6 +2,7 @@ import { IMatch } from '../Interfaces/matches/IMatch';
 import { IMatchModel } from '../Interfaces/matches/IMatchModel';
 import modelMatch from '../database/models/match';
 import modelTeam from '../database/models/teams';
+import { IBody } from '../Interfaces/matches/IBody';
 
 export default class ModelMatch implements IMatchModel {
   private model = modelMatch;
@@ -38,5 +39,15 @@ export default class ModelMatch implements IMatchModel {
     if (affectedRows === 0) return null;
 
     return affectedRows;
+  }
+
+  async updateResult(Mid: number, body: IBody): Promise<number> {
+    const [affectedCount] = await this.model.update(
+      {
+        homeTeamGoals: body.homeTeamGoals, awayTeamGoals: body.awayTeamGoals,
+      },
+      { where: { id: Mid } },
+    );
+    return affectedCount;
   }
 }
