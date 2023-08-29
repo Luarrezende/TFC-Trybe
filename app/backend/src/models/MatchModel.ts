@@ -3,6 +3,7 @@ import { IMatchModel } from '../Interfaces/matches/IMatchModel';
 import modelMatch from '../database/models/match';
 import modelTeam from '../database/models/teams';
 import { IBody } from '../Interfaces/matches/IBody';
+import { IMatchBody } from '../Interfaces/matches/IMatchBody';
 
 export default class ModelMatch implements IMatchModel {
   private model = modelMatch;
@@ -49,5 +50,17 @@ export default class ModelMatch implements IMatchModel {
       { where: { id: Mid } },
     );
     return affectedCount;
+  }
+
+  async createMatch(body: IMatchBody): Promise<IMatchBody> {
+    const { homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals } = body;
+    const match = await this.model.create({
+      homeTeamId,
+      homeTeamGoals,
+      awayTeamId,
+      awayTeamGoals,
+      inProgress: true,
+    });
+    return match;
   }
 }
