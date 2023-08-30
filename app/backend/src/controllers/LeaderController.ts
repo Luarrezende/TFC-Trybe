@@ -8,7 +8,12 @@ export default class LeaderController {
   ) { }
 
   public async leaderboard(_req: Request, res: Response) {
-    const serviceResponse = await this.leaderService.leaderboard();
+    const serviceResponse = await this.leaderService.leaderboard('home');
+    res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
+  }
+
+  public async leaderboardAway(_req: Request, res: Response) {
+    const serviceResponse = await this.leaderService.leaderboard('away');
     res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
   }
 }

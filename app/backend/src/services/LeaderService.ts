@@ -13,13 +13,13 @@ export default class LeaderService {
     private modelMatch: IMatchModel = new ModelMatch(),
   ) { }
 
-  public async leaderboard(): Promise<ServiceResponse<ILeaderService[] | unknown>> {
+  public async leaderboard(side: string): Promise<ServiceResponse<ILeaderService[] | unknown>> {
     const allTeams = await this.modelTeams.findAll();
 
     const homeTeams = await allTeams.map(async (team) => {
       const matches = await this.modelMatch.findAllMatches(team);
       const allmatches = await matches.map((matche) => (
-        joins([matche], team.teamName || '')));
+        joins([matche], team.teamName || '', side)));
       const statistic = allmatches[allmatches.length - 1];
       return { ...statistic };
     });
