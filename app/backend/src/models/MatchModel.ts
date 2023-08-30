@@ -54,6 +54,7 @@ export default class ModelMatch implements IMatchModel {
 
   async createMatch(body: IMatchBody): Promise<IMatchBody> {
     const { homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals } = body;
+
     const match = await this.model.create({
       homeTeamId,
       homeTeamGoals,
