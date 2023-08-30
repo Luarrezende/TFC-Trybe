@@ -1,4 +1,5 @@
 import { IMatch } from '../Interfaces/matches/IMatch';
+import { ITeam } from '../Interfaces/teams/ITeam';
 import { IMatchModel } from '../Interfaces/matches/IMatchModel';
 import modelMatch from '../database/models/match';
 import modelTeam from '../database/models/teams';
@@ -63,5 +64,12 @@ export default class ModelMatch implements IMatchModel {
       inProgress: true,
     });
     return match;
+  }
+
+  async findAllMatches(team: ITeam): Promise<IMatch[]> {
+    const all = await this.model.findAll({
+      where: { homeTeamId: team.id, inProgress: false },
+    });
+    return all;
   }
 }
